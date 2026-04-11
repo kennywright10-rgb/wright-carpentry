@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | Wright Carpentry | Pollock Pines CA</title>
+  <meta name="description" content="Professional carpentry and remodeling services in Pollock Pines, CA. Home remodeling, room additions, custom decks, retaining walls, and handyman services across El Dorado County.">
+  <meta name="keywords" content="carpentry, remodeling, room additions, custom decks, retaining walls, handyman, El Dorado County, Pollock Pines, Cameron Park, El Dorado Hills, Folsom">
+  <meta name="author" content="Wright Carpentry">
+  <link rel="canonical" href="https://wrightcarpentry.org/services.html">
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Wright Carpentry",
+    "description": "Professional carpentry and remodeling services",
+    "telephone": "(628) 202-2773",
+    "email": "ianwright@wrightcarpentry.org",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Pollock Pines",
+      "addressRegion": "CA",
+      "postalCode": "95726"
+    },
+    "areaServed": ["Pollock Pines", "El Dorado Hills", "Cameron Park", "Folsom", "El Dorado County"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Carpentry Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "@id": "#remodeling",
+          "name": "Home Remodeling",
+          "description": "Complete home remodeling services including kitchens, bathrooms, and living spaces"
+        },
+        {
+          "@type": "Offer",
+          "@id": "#additions",
+          "name": "Room Additions",
+          "description": "Custom room additions to expand your living space"
+        },
+        {
+          "@type": "Offer",
+          "@id": "#decks",
+          "name": "Custom Decks",
+          "description": "Beautiful and durable custom deck construction"
+        },
+        {
+          "@type": "Offer",
+          "@id": "#retaining-walls",
+          "name": "Retaining Walls",
+          "description": "Professional retaining wall installation and repair"
+        },
+        {
+          "@type": "Offer",
+          "@id": "#handyman",
+          "name": "Handyman Services",
+          "description": "Expert handyman services for repairs and maintenance"
+        }
+      ]
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --black: #0A0908;
+      --dark: #1A1814;
+      --gold: #C9A040;
+      --off-white: #F6F3EE;
+    }
+
+    .service-section {
+      padding: 80px 0;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .service-grid.reverse {
+      direction: rtl;
+    }
+
+    .service-grid.reverse > * {
+      direction: ltr;
+    }
+
+    .service-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      color: var(--dark);
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .service-content p {
+      font-family: 'Inter', sans-serif;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+
+    .service-list {
+      list-style: none;
+      padding: 0;
+      margin: 30px 0;
+    }
+
+    .service-list li {
+      font-family: 'Inter', sans-serif;
+      color: #555;
+      padding: 8px 0;
+      padding-left: 24px;
+      position: relative;
+      font-size: 15px;
+    }
+
+    .service-list li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .service-image {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .service-note {
+      background-color: #f9f7f5;
+      border-left: 4px solid var(--gold);
+      padding: 16px;
+      margin-top: 24px;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #666;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .cta-section {
+      background-color: var(--dark);
+      background-image: url('https://images.unsplash.com/photo-1416859272930-ca7c3e28c8d7?w=1920&q=70&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: var(--off-white);
+      padding: 120px 0;
+      position: relative;
+      text-align: center;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(26, 24, 20, 0.85);
+      z-index: 1;
+    }
+
+    .cta-section .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .cta-section p {
+      font-size: 18px;
+      margin-bottom: 40px;
+      opacity: 0.95;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 16px 48px;
+      background-color: var(--gold);
+      color: var(--dark);
+      text-decoration: none;
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      transition: background-color 0.3s, transform 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      background-color: #d9b55a;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .service-grid,
+      .service-grid.reverse {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        direction: ltr;
+      }
+
+      .service-content h2 {
+        font-size: 32px;
+      }
+
+      .service-image {
+        height: 350px;
+      }
+
+      .cta-section {
+        padding: 80px 0;
+      }
+
+      .cta-section h2 {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="/" class="navbar-logo">
+        <img src="images/logo.jpg" alt="Wright Carpentry Logo">
+      </a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="service-areas.html">Service Areas</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="btn-nav">Free Estimate</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <nav class="mobile-nav" id="mobileNav" role="navigation">
+    <a href="/">Home</a>
+    <a href="services.html" class="active">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="service-areas.html">Service Areas</a>
+    <a href="about.html">About Ian</a>
+    <a href="contact.html" class="btn-mobile-cta">Get a Free Estimate →</a>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-bg">
+      <img src="https://images.unsplash.com/photo-1503387837-b154d5074bd2?w=1920&q=80&auto=format&fit=crop" alt="Professional carpentry services">
+    </div>
+    <div class="container page-hero-content">
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+        </svg>
+        Services
+      </div>
+      <span class="section-label">What We Offer</span>
+      <h1>Expert Carpentry Services</h1>
+      <p>Handcrafted solutions for your home, from remodels to decks and everything in between</p>
+    </div>
+  </section>
+
+  <!-- Home Remodeling Section -->
+  <section class="service-section" id="remodeling">
+    <div class="container">
+      <div class="service-grid">
+        <div class="service-content">
+          <h2>Home Remodeling</h2>
+          <p>Transform your living spaces with our comprehensive home remodeling services. Whether you're dreaming of a modern kitchen, a luxurious bathroom, or a complete home refresh, our skilled craftsmen bring your vision to life with precision and attention to detail.</p>
+          <p>We specialize in kitchen and bathroom remodels that combine functionality with beautiful design. Our team handles everything from structural work to finish carpentry, ensuring your remodel is completed to the highest standards. While we don't yet offer full new-home construction, our remodeling expertise covers virtually every aspect of upgrading and improving existing homes.</p>
+          <p>We work closely with homeowners in Pollock Pines, El Dorado Hills, Cameron Park, and throughout El Dorado County to deliver remodels that increase both the beauty and value of your home.</p>
+          <ul class="service-list">
+            <li>Kitchen remodels and upgrades</li>
+            <li>Bathroom renovations and design</li>
+            <li>Living space transformations</li>
+            <li>Custom cabinetry and built-ins</li>
+            <li>Flooring and finish work</li>
+            <li>Complete project management</li>
+          </ul>
+          <div class="service-note">
+            We proudly serve Pollock Pines, El Dorado Hills, Cameron Park, and the broader El Dorado County region.
+          </div>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80&auto=format&fit=crop" alt="Modern kitchen remodel" class="service-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Room Additions Section -->
+  <section class="service-section" id="additions">
+    <div class="container">
+      <div class="service-grid reverse">
+        <div class="service-content">
+          <h2>Room Additions</h2>
+          <p>Need more space? Our room addition services allow you to expand your home without moving. Whether you're adding a bedroom, family room, or office, we handle the entire process from design and permitting to construction and finishing.</p>
+          <p>Room additions require careful planning and expert execution. Our team works with local building codes and ensures seamless integration with your existing home's structure and aesthetic. While we don't yet offer full new-home construction, our addition expertise means you get the quality and craftsmanship of new construction in your expansion. From foundation work to roofing to final trim, we manage every detail.</p>
+          <p>Perfect for families in Folsom, Cameron Park, and surrounding areas looking to grow their living space without relocating.</p>
+          <ul class="service-list">
+            <li>Single and multi-room additions</li>
+            <li>Design consultation and planning</li>
+            <li>Permitting and code compliance</li>
+            <li>Foundation and framing</li>
+            <li>Complete interior finishing</li>
+            <li>Seamless integration with existing home</li>
+          </ul>
+          <div class="service-note">
+            Serving homeowners in Cameron Park, Folsom, El Dorado Hills, and throughout the El Dorado County foothills.
+          </div>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&auto=format&fit=crop" alt="Room addition project" class="service-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Custom Decks Section -->
+  <section class="service-section" id="decks">
+    <div class="container">
+      <div class="service-grid">
+        <div class="service-content">
+          <h2>Custom Decks</h2>
+          <p>A well-built deck extends your living space and transforms your outdoor experience. Our custom deck designs combine durability, beauty, and functionality. Whether you envision a cozy retreat or an entertaining hub, we build decks that will be enjoyed for years to come.</p>
+          <p>We construct decks using quality materials selected for their durability in the Sacramento foothills climate. From pressure-treated lumber to composite materials, we discuss options that fit your budget, maintenance preferences, and aesthetic goals. Our decks are built to last, with proper drainage, solid construction, and expert finishing.</p>
+          <p>Homeowners throughout Pollock Pines, Sierra Springs, and El Dorado County trust us to build decks that increase their home's value and quality of life.</p>
+          <ul class="service-list">
+            <li>Custom deck design and planning</li>
+            <li>Traditional and composite materials</li>
+            <li>Built-in seating and railings</li>
+            <li>Multi-level and elevated designs</li>
+            <li>Stairs, platforms, and accessories</li>
+            <li>Weather-resistant construction</li>
+          </ul>
+          <div class="service-note">
+            Building beautiful decks for Pollock Pines, Sierra Springs, El Dorado Hills, and the entire El Dorado County area.
+          </div>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?w=800&q=80&auto=format&fit=crop" alt="Custom deck construction" class="service-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Retaining Walls Section -->
+  <section class="service-section" id="retaining-walls">
+    <div class="container">
+      <div class="service-grid reverse">
+        <div class="service-content">
+          <h2>Retaining Walls</h2>
+          <p>Retaining walls serve both practical and aesthetic purposes on your property. They prevent soil erosion, create level building areas, and add visual interest to your landscape. Our expertly constructed retaining walls are built to withstand the test of time.</p>
+          <p>We design and build retaining walls that are both structurally sound and visually appealing. Whether you need a simple wall to address drainage issues or an elaborate multi-tier structure as a landscape feature, our team has the expertise to execute your vision. We ensure proper grading, drainage, and installation to prevent settling or failure.</p>
+          <p>Serving Sierra Springs, Pollock Pines, Cameron Park, and all of El Dorado County with professional retaining wall solutions.</p>
+          <ul class="service-list">
+            <li>Structural design and engineering</li>
+            <li>Stone, timber, and composite materials</li>
+            <li>Proper drainage and grading</li>
+            <li>Multi-tier and curved designs</li>
+            <li>Landscape integration</li>
+            <li>Durable and maintenance-friendly solutions</li>
+          </ul>
+          <div class="service-note">
+            Retaining walls built to code throughout Sierra Springs, Pollock Pines, Cameron Park, and El Dorado County.
+          </div>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1487300420173-7780ded5d99a?w=800&q=80&auto=format&fit=crop" alt="Professional retaining wall" class="service-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Handyman Services Section -->
+  <section class="service-section" id="handyman">
+    <div class="container">
+      <div class="service-grid">
+        <div class="service-content">
+          <h2>Handyman Services</h2>
+          <p>Not every job requires a full remodel. Our handyman services address the smaller projects and repairs that keep your home in top condition. From carpentry repairs to installation work, we handle it all with the same professionalism and quality you'd expect from Wright Carpentry.</p>
+          <p>Whether you need shelving installed, doors repaired, trim work completed, or general carpentry maintenance, our handyman team is ready to help. We pride ourselves on honest, straightforward service and taking care of those nagging projects that are difficult to find help for.</p>
+          <p>Serving homeowners in Placerville, Pollock Pines, Cameron Park, Folsom, and throughout El Dorado County with reliable handyman solutions.</p>
+          <ul class="service-list">
+            <li>Carpentry repairs and maintenance</li>
+            <li>Custom shelving and built-ins</li>
+            <li>Door and window work</li>
+            <li>Trim and finish carpentry</li>
+            <li>General home repairs</li>
+            <li>Installation of fixtures and hardware</li>
+          </ul>
+          <div class="service-note">
+            Quick, professional handyman service for Placerville, Pollock Pines, Cameron Park, Folsom, and El Dorado County.
+          </div>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80&auto=format&fit=crop" alt="Professional handyman services" class="service-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Start Your Project?</h2>
+      <p>Get a free estimate for your carpentry and remodeling needs. Contact Ian today.</p>
+      <a href="contact.html" class="cta-button">Request a Free Estimate</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/logo.jpg" alt="Wright Carpentry Logo">
+          <p>Handcrafted remodeling, room additions, custom decks, retaining walls, and expert handyman services across El Dorado County and the greater Sacramento foothills.</p>
+          <div class="footer-socials">
+            <a href="https://www.facebook.com/ianwright81" target="_blank" rel="noopener" class="footer-social" aria-label="Facebook">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="services.html#remodeling">Home Remodeling</a></li>
+            <li><a href="services.html#additions">Room Additions</a></li>
+            <li><a href="services.html#decks">Custom Decks</a></li>
+            <li><a href="services.html#retaining-walls">Retaining Walls</a></li>
+            <li><a href="services.html#handyman">Handyman Services</a></li>
+            <li><a href="services.html">All Services</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="about.html">About Ian</a></li>
+            <li><a href="gallery.html">Project Gallery</a></li>
+            <li><a href="service-areas.html">Service Areas</a></li>
+            <li><a href="contact.html">Free Estimate</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact Us</h5>
+          <div class="footer-contact-item">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <a href="tel:6282022773">(628) 202-2773</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <a href="mailto:ianwright@wrightcarpentry.org">ianwright@wrightcarpentry.org</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span>Pollock Pines, CA 95726</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Mon–Fri 7am–6pm · Sat 8am–4pm</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Wright Carpentry. All rights reserved. Serving El Dorado County, CA.</p>
+        <p><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a></p>
+      </div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
