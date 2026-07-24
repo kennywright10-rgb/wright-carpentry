@@ -1270,3 +1270,20 @@ p  { line-height: 1.75; }
   text-transform: uppercase;
   box-shadow: 0 2px 8px rgba(0,0,0,0.14);
 }
+
+/* === About section image centering === */
+.about-section .two-col-img {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.about-section .two-col-img img {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  height: 420px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 12px;
+  margin: 0;
+}
