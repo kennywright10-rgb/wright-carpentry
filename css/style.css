@@ -1287,3 +1287,34 @@ p  { line-height: 1.75; }
   border-radius: 12px;
   margin: 0;
 }
+
+/* ============================================================
+   MOBILE NAV + LAYOUT OVERRIDES
+   ============================================================ */
+@media (max-width: 900px) {
+  .navbar-inner { height: 70px; }
+  .nav-logo img { height: 52px; width: auto; }
+  .mobile-nav { top: 70px; }
+  .announcement-bar { margin-top: 70px; }
+  .hero-content { padding: 96px 24px 60px; }
+}
+
+@media (max-width: 640px) {
+  .navbar-inner { height: 64px; }
+  .nav-logo img { height: 44px; width: auto; }
+  .mobile-nav { top: 64px; }
+  .announcement-bar {
+    margin-top: 64px;
+    font-size: 0.72rem;
+    padding: 7px 16px;
+    letter-spacing: 0.04em;
+  }
+  .hero-content { padding: 92px 20px 56px; }
+  .hero-content h1 { font-size: 2rem; }
+  .hero-sub { font-size: 0.95rem; }
+  .section { padding: 60px 0; }
+  .section-head { margin-bottom: 36px; }
+  .about-section .two-col-img img { height: 280px; }
+  .service-card-img { height: 180px; }
+  .stat-number { font-size: 2.2rem; }
+}
