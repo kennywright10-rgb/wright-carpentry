@@ -80,7 +80,7 @@ p  { line-height: 1.75; }
   text-decoration: none;
 }
 .nav-logo img {
-  height: 72px;
+  height: 67px;
   width: auto;
   object-fit: contain;
 }
@@ -684,7 +684,7 @@ p  { line-height: 1.75; }
 }
 .process-step { text-align: center; padding: 0 16px; }
 .process-num {
-  width: 72px; height: 72px;
+  width: 72px; height: 67px;
   background: var(--dark);
   border: 3px solid var(--gold);
   border-radius: 50%;
