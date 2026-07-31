@@ -278,6 +278,7 @@
 
 
 
+
 <!-- WRIGHT-REVIEWS-START -->
 <script>
 (function(){
@@ -287,11 +288,10 @@
     if(!grid||!reviews.length) return;
     var top=reviews.filter(function(r){return r.rating>=4;}).slice(0,3);
     if(!top.length) top=reviews.slice(0,3);
-    grid.innerHTML=top.map(function(r,i){
+    grid.innerHTML=top.map(function(r){
       var stars='★'.repeat(r.rating)+'☆'.repeat(5-r.rating);
       var ini=r.author_name.split(' ').map(function(n){return n[0]||'';}).join('').slice(0,2).toUpperCase();
-      var delay=i?' data-aos-delay="'+(i*100)+'"':'';
-      return '<article class="testimonial-card" data-aos'+delay+'>'
+      return '<article class="testimonial-card" style="opacity:1;transform:none;">'
         +'<div class="stars">'+stars+'</div>'
         +'<p class="testimonial-text">“'+esc(r.text)+'”</p>'
         +'<div class="reviewer"><div class="reviewer-avatar">'+esc(ini)+'</div>'
@@ -305,23 +305,13 @@
     el.style.cssText='position:fixed;top:-9999px;left:-9999px;width:200px;height:200px;';
     document.body.appendChild(el);
     var svc=new google.maps.places.PlacesService(el);
-    var loc=new google.maps.LatLng(38.7775027,-121.8629909);
-    svc.textSearch({
-      query:'Wright Carpentry',
-      location:loc,
-      radius:10000
-    },function(res,st){
-      console.log('[WC Reviews] textSearch status:',st,'results:',res&&res.length);
-      if(st!==google.maps.places.PlacesServiceStatus.OK||!res||!res[0]) return;
-      console.log('[WC Reviews] found:',res[0].name,'placeId:',res[0].place_id);
-      svc.getDetails({
-        placeId:res[0].place_id,
-        fields:['name','reviews']
-      },function(place,ds){
-        console.log('[WC Reviews] getDetails:',ds,'reviews:',place&&place.reviews&&place.reviews.length);
-        if(ds!==google.maps.places.PlacesServiceStatus.OK||!place||!place.reviews) return;
+    svc.getDetails({
+      placeId: + PLACE_ID + ,
+      fields:['reviews']
+    },function(place,ds){
+      if(ds===google.maps.places.PlacesServiceStatus.OK&&place&&place.reviews){
         renderReviews(place.reviews);
-      });
+      }
     });
   }
   window.initReviews=initReviews;
