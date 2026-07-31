@@ -1,22 +1,28 @@
 <!DOCTYPE html>
-<html>
-<head><title>Place ID Finder</title></head>
+<html><head><title>Place ID Finder</title></head>
 <body>
-<h2 id="out">Looking up Place ID via CID...</h2>
+<pre id="out">Trying multiple CID formats...</pre>
 <script>
-fetch('https://maps.googleapis.com/maps/api/geocode/json?place_id=cid:18188781412358541578&key=AIzaSyDKs9oFCOnBK44nJGq-kwFfHqyGT5FRKOg')
-  .then(function(r){return r.json();})
-  .then(function(data){
-    var el=document.getElementById('out');
-    if(data.results&&data.results.length){
-      var r=data.results[0];
-      el.innerHTML='<b>Name:</b> '+r.address_components[0].long_name+'<br>'
-        +'<b>Address:</b> '+r.formatted_address+'<br>'
-        +'<b>Place ID:</b> <code style="font-size:1.2em;background:#ff0;padding:4px">'+r.place_id+'</code>';
-    } else {
-      el.textContent='No results: '+JSON.stringify(data);
-    }
-  }).catch(function(e){document.getElementById('out').textContent='Error: '+e;});
+var KEY = 'AIzaSyDKs9oFCOnBK44nJGq-kwFfHqyGT5FRKOg';
+var cids = [
+  '3053071123531868928',
+  '18188781412358541578'
+];
+var out = document.getElementById('out');
+
+function tryNext(i){
+  if(i>=cids.length){out.textContent+='All done.';return;}
+  fetch('https://maps.googleapis.com/maps/api/geocode/json?place_id=cid:'+cids[i]+'&key='+KEY)
+    .then(function(r){return r.json();})
+    .then(function(d){
+      out.textContent += 'CID '+cids[i]+': '+d.status+'\n';
+      if(d.results&&d.results[0]){
+        out.textContent += '  Place ID: '+d.results[0].place_id+'\n';
+        out.textContent += '  Address: '+d.results[0].formatted_address+'\n';
+      }
+      tryNext(i+1);
+    });
+}
+tryNext(0);
 </script>
-</body>
-</html>
+</body></html>
