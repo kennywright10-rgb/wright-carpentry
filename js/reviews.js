@@ -23,8 +23,8 @@
     el.style.cssText='position:fixed;top:-9999px;left:-9999px;width:200px;height:200px;';
     document.body.appendChild(el);
     var svc=new google.maps.places.PlacesService(el);
-    svc.getDetails({placeId:PID,fields:['reviews']},function(place,ds){
-      if(ds===google.maps.places.PlacesServiceStatus.OK&&place&&place.reviews){
+    svc.getDetails({placeId:PID,fields:['reviews']},function(place,status){
+      if(status===google.maps.places.PlacesServiceStatus.OK&&place&&place.reviews){
         renderReviews(place.reviews);
       }
     });
