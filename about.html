@@ -275,7 +275,8 @@
   window.initReviews = initReviews;
 })();
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKs9oFCOnBK44nJGq-kwFfHqyGT5FRKOg&libraries=places&callback=initReviews"></script>
+
+
 <!-- WRIGHT-REVIEWS-START -->
 <script>
 (function(){
@@ -305,18 +306,16 @@
     var svc=new google.maps.places.PlacesService(el);
     svc.findPlaceFromQuery({
       query:'Wright Carpentry Pollock Pines CA 95726',
-      fields:['place_id']
+      fields:['place_id','name']
     },function(res,st){
-      if(st!==google.maps.places.PlacesServiceStatus.OK||!res||!res[0]){
-        console.warn('Wright Reviews: place not found',st); return;
-      }
+      console.log('[WC Reviews] findPlace status:',st,'result:',res);
+      if(st!==google.maps.places.PlacesServiceStatus.OK||!res||!res[0]) return;
       svc.getDetails({
         placeId:res[0].place_id,
-        fields:['reviews']
+        fields:['name','reviews']
       },function(place,ds){
-        if(ds!==google.maps.places.PlacesServiceStatus.OK||!place||!place.reviews){
-          console.warn('Wright Reviews: getDetails failed',ds); return;
-        }
+        console.log('[WC Reviews] getDetails status:',ds,'reviews:',place&&place.reviews);
+        if(ds!==google.maps.places.PlacesServiceStatus.OK||!place||!place.reviews) return;
         renderReviews(place.reviews);
       });
     });
