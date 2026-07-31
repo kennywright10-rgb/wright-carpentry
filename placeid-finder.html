@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html><head><title>Place ID Finder</title></head>
 <body>
-<pre id="out">Looking up...</pre>
-<div id="map" style="position:fixed;top:-9999px;left:-9999px;width:200px;height:200px;"></div>
+<pre id="out">Searching...</pre>
 <script>
-function init(){
-  var svc = new google.maps.places.PlacesService(document.getElementById('map'));
-  svc.getDetails({
-    placeId: '/g/11zgw2lp17',
-    fields: ['place_id','name','formatted_address','reviews']
-  }, function(place, status){
+var KEY = 'AIzaSyDKs9oFCOnBK44nJGq-kwFfHqyGT5FRKOg';
+
+// Try REST findplacefromtext with phone number
+fetch('https://maps.googleapis.com/maps/api/place/findplacefromtext/json'
+  + '?input=%28530%29+391-0206&inputtype=phonenumber&fields=place_id%2Cname%2Cformatted_address&key=' + KEY)
+  .then(function(r){return r.json();})
+  .then(function(d){
     var out = document.getElementById('out');
-    if(status === 'OK' && place){
-      out.textContent = 'Name: ' + place.name + '\n'
-        + 'Address: ' + place.formatted_address + '\n'
-        + 'Place ID: ' + place.place_id + '\n'
-        + 'Reviews: ' + (place.reviews ? place.reviews.length : 0);
-    } else {
-      out.textContent = 'Status: ' + status;
-    }
+    out.textContent += 'Phone lookup: ' + d.status + '\n';
+    if(d.candidates) d.candidates.forEach(function(c){
+      out.textContent += '  ' + c.name + ' | ' + c.formatted_address + '\n  Place ID: ' + c.place_id + '\n';
+    });
+
+    // Also try text search
+    return fetch('https://maps.googleapis.com/maps/api/place/textsearch/json'
+      + '?query=Wright+Carpentry+95726&key=' + KEY);
+  })
+  .then(function(r){return r.json();})
+  .then(function(d){
+    var out = document.getElementById('out');
+    out.textContent += '\nText search: ' + d.status + '\n';
+    if(d.results) d.results.forEach(function(r){
+      out.textContent += '  ' + r.name + ' | ' + r.formatted_address + '\n  Place ID: ' + r.place_id + '\n';
+    });
   });
-}
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKs9oFCOnBK44nJGq-kwFfHqyGT5FRKOg&libraries=places&callback=init"></script>
 </body></html>
