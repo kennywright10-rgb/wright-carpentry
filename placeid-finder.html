@@ -2,25 +2,31 @@
 <html>
 <head><title>Place ID Finder</title></head>
 <body>
-<h2 id="out">Searching...</h2>
+<h2 id="out">Searching by phone...</h2>
 <div id="map" style="position:fixed;top:-9999px;left:-9999px;width:200px;height:200px;"></div>
 <script>
 function init(){
-  var svc=new google.maps.places.PlacesService(document.getElementById('map'));
-  svc.textSearch({
-    query:'Wright Carpentry',
-    location:new google.maps.LatLng(38.784919,-120.5437558),
-    radius:2000
-  },function(results,status){
-    if(status==='OK'){
-      var out='<ul>';
-      results.forEach(function(r){
-        out+='<li><b>'+r.name+'</b><br>'+r.formatted_address+'<br>Place ID: <code>'+r.place_id+'</code></li><br>';
-      });
-      document.getElementById('out').innerHTML=out+'</ul>';
-    } else {
-      document.getElementById('out').textContent='Status: '+status;
-    }
+  var el=document.getElementById('map');
+  var svc=new google.maps.places.PlacesService(el);
+
+  // Try phone number first
+  svc.findPlaceFromQuery({
+    query:'(530) 391-0206',
+    fields:['place_id','name','formatted_address']
+  },function(r,s){
+    var out='<h3>Phone search: '+s+'</h3>';
+    if(r) r.forEach(function(p){out+='<b>'+p.name+'</b> '+p.formatted_address+'<br><code>'+p.place_id+'</code><br><br>';});
+
+    // Also try broad text search
+    svc.textSearch({
+      query:'Wright Carpentry Pollock Pines',
+      location:new google.maps.LatLng(38.784919,-120.5437558),
+      radius:50000
+    },function(r2,s2){
+      out+='<h3>Text search: '+s2+'</h3>';
+      if(r2) r2.forEach(function(p){out+='<b>'+p.name+'</b> '+p.formatted_address+'<br><code>'+p.place_id+'</code><br><br>';});
+      document.getElementById('out').innerHTML=out;
+    });
   });
 }
 </script>
