@@ -2,34 +2,21 @@
 <html>
 <head><title>Place ID Finder</title></head>
 <body>
-<h2 id="out">Searching by phone...</h2>
-<div id="map" style="position:fixed;top:-9999px;left:-9999px;width:200px;height:200px;"></div>
+<h2 id="out">Looking up Place ID via CID...</h2>
 <script>
-function init(){
-  var el=document.getElementById('map');
-  var svc=new google.maps.places.PlacesService(el);
-
-  // Try phone number first
-  svc.findPlaceFromQuery({
-    query:'(530) 391-0206',
-    fields:['place_id','name','formatted_address']
-  },function(r,s){
-    var out='<h3>Phone search: '+s+'</h3>';
-    if(r) r.forEach(function(p){out+='<b>'+p.name+'</b> '+p.formatted_address+'<br><code>'+p.place_id+'</code><br><br>';});
-
-    // Also try broad text search
-    svc.textSearch({
-      query:'Wright Carpentry Pollock Pines',
-      location:new google.maps.LatLng(38.784919,-120.5437558),
-      radius:50000
-    },function(r2,s2){
-      out+='<h3>Text search: '+s2+'</h3>';
-      if(r2) r2.forEach(function(p){out+='<b>'+p.name+'</b> '+p.formatted_address+'<br><code>'+p.place_id+'</code><br><br>';});
-      document.getElementById('out').innerHTML=out;
-    });
-  });
-}
+fetch('https://maps.googleapis.com/maps/api/geocode/json?place_id=cid:18188781412358541578&key=AIzaSyDKs9oFCOnBK44nJGq-kwFfHqyGT5FRKOg')
+  .then(function(r){return r.json();})
+  .then(function(data){
+    var el=document.getElementById('out');
+    if(data.results&&data.results.length){
+      var r=data.results[0];
+      el.innerHTML='<b>Name:</b> '+r.address_components[0].long_name+'<br>'
+        +'<b>Address:</b> '+r.formatted_address+'<br>'
+        +'<b>Place ID:</b> <code style="font-size:1.2em;background:#ff0;padding:4px">'+r.place_id+'</code>';
+    } else {
+      el.textContent='No results: '+JSON.stringify(data);
+    }
+  }).catch(function(e){document.getElementById('out').textContent='Error: '+e;});
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKs9oFCOnBK44nJGq-kwFfHqyGT5FRKOg&libraries=places&callback=init"></script>
 </body>
 </html>
