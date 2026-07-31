@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html><head><title>Place ID Finder</title></head>
 <body>
-<pre id="out">Trying multiple CID formats...</pre>
+<pre id="out">Looking up...</pre>
+<div id="map" style="position:fixed;top:-9999px;left:-9999px;width:200px;height:200px;"></div>
 <script>
-var KEY = 'AIzaSyDKs9oFCOnBK44nJGq-kwFfHqyGT5FRKOg';
-var cids = [
-  '3053071123531868928',
-  '18188781412358541578'
-];
-var out = document.getElementById('out');
-
-function tryNext(i){
-  if(i>=cids.length){out.textContent+='All done.';return;}
-  fetch('https://maps.googleapis.com/maps/api/geocode/json?place_id=cid:'+cids[i]+'&key='+KEY)
-    .then(function(r){return r.json();})
-    .then(function(d){
-      out.textContent += 'CID '+cids[i]+': '+d.status+'\n';
-      if(d.results&&d.results[0]){
-        out.textContent += '  Place ID: '+d.results[0].place_id+'\n';
-        out.textContent += '  Address: '+d.results[0].formatted_address+'\n';
-      }
-      tryNext(i+1);
-    });
+function init(){
+  var svc = new google.maps.places.PlacesService(document.getElementById('map'));
+  svc.getDetails({
+    placeId: '/g/11zgw2lp17',
+    fields: ['place_id','name','formatted_address','reviews']
+  }, function(place, status){
+    var out = document.getElementById('out');
+    if(status === 'OK' && place){
+      out.textContent = 'Name: ' + place.name + '\n'
+        + 'Address: ' + place.formatted_address + '\n'
+        + 'Place ID: ' + place.place_id + '\n'
+        + 'Reviews: ' + (place.reviews ? place.reviews.length : 0);
+    } else {
+      out.textContent = 'Status: ' + status;
+    }
+  });
 }
-tryNext(0);
 </script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKs9oFCOnBK44nJGq-kwFfHqyGT5FRKOg&libraries=places&callback=init"></script>
 </body></html>
