@@ -277,6 +277,7 @@
 </script>
 
 
+
 <!-- WRIGHT-REVIEWS-START -->
 <script>
 (function(){
@@ -304,17 +305,20 @@
     el.style.cssText='position:fixed;top:-9999px;left:-9999px;width:200px;height:200px;';
     document.body.appendChild(el);
     var svc=new google.maps.places.PlacesService(el);
-    svc.findPlaceFromQuery({
-      query:'Wright Carpentry Pollock Pines CA 95726',
-      fields:['place_id','name']
+    var loc=new google.maps.LatLng(38.7775027,-121.8629909);
+    svc.textSearch({
+      query:'Wright Carpentry',
+      location:loc,
+      radius:10000
     },function(res,st){
-      console.log('[WC Reviews] findPlace status:',st,'result:',res);
+      console.log('[WC Reviews] textSearch status:',st,'results:',res&&res.length);
       if(st!==google.maps.places.PlacesServiceStatus.OK||!res||!res[0]) return;
+      console.log('[WC Reviews] found:',res[0].name,'placeId:',res[0].place_id);
       svc.getDetails({
         placeId:res[0].place_id,
         fields:['name','reviews']
       },function(place,ds){
-        console.log('[WC Reviews] getDetails status:',ds,'reviews:',place&&place.reviews);
+        console.log('[WC Reviews] getDetails:',ds,'reviews:',place&&place.reviews&&place.reviews.length);
         if(ds!==google.maps.places.PlacesServiceStatus.OK||!place||!place.reviews) return;
         renderReviews(place.reviews);
       });
