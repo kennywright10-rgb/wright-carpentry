@@ -92,70 +92,71 @@
 
       <div class="contact-form-wrap">
         <h3 style="font-family:var(--serif);font-size:1.25rem;margin-bottom:1.5rem;color:var(--dark);">Tell Us About Your Project</h3>
-        <form id="contactForm" novalidate>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="firstName">First Name *</label>
-              <input type="text" id="firstName" name="firstName" placeholder="Ian" required autocomplete="given-name">
-            </div>
-            <div class="form-group">
-              <label for="lastName">Last Name *</label>
-              <input type="text" id="lastName" name="lastName" placeholder="Wright" required autocomplete="family-name">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="phone">Phone Number *</label>
-              <input type="tel" id="phone" name="phone" placeholder="(530) 555-1234" required autocomplete="tel">
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="service">Service Needed *</label>
-              <select id="service" name="service" required>
-                <option value="" disabled selected>Select a service…</option>
-                <option>Retaining Walls</option>
-                <option>Deck Repair</option>
-                <option>Fence Installation &amp; Repair</option>
-                <option>Dry Rot Repair</option>
-                <option>Door Installation &amp; Repair</option>
-                <option>Flooring Installation</option>
-                <option>Drywall Installation &amp; Repair</option>
-                <option>Finish Carpentry &amp; Trim</option>
-                <option>Light Framing</option>
-                <option>Handyman Services</option>
-                <option>Light Demolition</option>
-                <option>General Home Maintenance</option>
-                <option>Multiple / Not Sure</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="zip">Your Zip Code *</label>
-              <input type="text" id="zip" name="zip" placeholder="95726" required autocomplete="postal-code">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="referral">How Did You Hear About Us?</label>
-            <select id="referral" name="referral">
-              <option value="" disabled selected>Select one…</option>
-              <option>Google Search</option>
-              <option>Friend or Family Referral</option>
-              <option>Neighbor Referral</option>
-              <option>Facebook</option>
-              <option>Nextdoor</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="message">Project Description *</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell Ian what you have going on — what needs to be done, the condition it's in, and any deadlines you're working with." required></textarea>
-          </div>
-          <button type="submit" class="btn btn-gold form-submit">Send My Estimate Request →</button>
-        </form>
+        <form id="estimate-form" action="https://formspree.io/f/xwvgdnel" method="POST">
+  <div class="form-group">
+    <label for="name">Name *</label>
+    <input type="text" id="name" name="name" autocomplete="name" required />
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone Number *</label>
+    <input type="tel" id="phone" name="phone" autocomplete="tel" required />
+  </div>
+  <div class="form-group">
+    <label for="email">Email Address *</label>
+    <input type="email" id="email" name="email" autocomplete="email" required />
+  </div>
+  <div class="form-group">
+    <label for="city">Project Location *</label>
+    <input type="text" id="city" name="project_location" placeholder="City or ZIP code" autocomplete="postal-code" required />
+  </div>
+  <div class="form-group">
+    <label for="service">What kind of work do you need? *</label>
+    <select id="service" name="service_needed" required>
+      <option value="">Choose a service</option>
+      <option value="Deck Repair">Deck Repair</option>
+      <option value="Retaining Wall">Retaining Wall</option>
+      <option value="Fence Repair or Installation">Fence Repair or Installation</option>
+      <option value="Dry Rot Repair">Dry Rot Repair</option>
+      <option value="Flooring Installation">Flooring Installation</option>
+      <option value="Drywall Repair or Installation">Drywall Repair or Installation</option>
+      <option value="Finish Carpentry and Trim">Finish Carpentry and Trim</option>
+      <option value="Door Repair or Installation">Door Repair or Installation</option>
+      <option value="Handyman Services">Handyman Services</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="message">Tell us about your project *</label>
+    <textarea id="message" name="message" rows="6" placeholder="Describe the work, approximate measurements, damage, materials, and your preferred timeline." required></textarea>
+  </div>
+  <div class="form-group">
+    <label for="timeline">When would you like the work completed?</label>
+    <select id="timeline" name="preferred_timeline">
+      <option value="">Select a timeline</option>
+      <option value="As soon as possible">As soon as possible</option>
+      <option value="Within 2 weeks">Within 2 weeks</option>
+      <option value="Within 1 month">Within 1 month</option>
+      <option value="Within 1 to 3 months">Within 1 to 3 months</option>
+      <option value="Just gathering estimates">Just gathering estimates</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="referral">How did you hear about Wright Carpentry?</label>
+    <select id="referral" name="referral_source">
+      <option value="">Choose one</option>
+      <option value="Google">Google</option>
+      <option value="Yelp">Yelp</option>
+      <option value="Facebook">Facebook</option>
+      <option value="Referral">Friend or Customer Referral</option>
+      <option value="Saw our work">Saw Our Work</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <input type="hidden" name="_subject" value="New Wright Carpentry Estimate Request" />
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" />
+  <button type="submit" id="submit-button" class="btn btn-gold form-submit">Request My Free Estimate</button>
+  <p id="form-status" role="status" aria-live="polite"></p>
+</form>
       </div>
     </div>
 
@@ -229,5 +230,34 @@
 </footer>
 
 <script src="js/main.js" defer></script>
+<script>
+(function(){
+  var form=document.getElementById('estimate-form');
+  var btn=document.getElementById('submit-button');
+  var status=document.getElementById('form-status');
+  if(!form) return;
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    btn.disabled=true; btn.textContent='Sending...'; status.textContent='';
+    try{
+      var r=await fetch(form.action,{method:form.method,body:new FormData(form),headers:{Accept:'application/json'}});
+      if(r.ok){
+        form.reset();
+        status.textContent='Thank you! Your request was sent. Ian will be in touch soon.';
+        status.className='form-success';
+      } else {
+        var d=await r.json();
+        status.textContent=d.errors?d.errors.map(function(x){return x.message;}).join(' '):'Could not send. Please call (530) 391-0206.';
+        status.className='form-error';
+      }
+    } catch(err){
+      status.textContent='Could not connect. Please call (530) 391-0206.';
+      status.className='form-error';
+    } finally {
+      btn.disabled=false; btn.textContent='Request My Free Estimate';
+    }
+  });
+})();
+</script>
 </body>
 </html>
