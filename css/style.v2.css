@@ -1148,8 +1148,7 @@ p  { line-height: 1.75; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
   .two-col,
-  .areas-layout,
-  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .areas-layout { grid-template-columns: 1fr; gap: 40px; }
   .two-col-img img { height: 320px; }
   .map-embed { height: 320px; }
   .gallery-grid {
@@ -1164,6 +1163,10 @@ p  { line-height: 1.75; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .why-grid { grid-template-columns: repeat(2, 1fr); }
   .services-detail-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .contact-grid { grid-template-columns: 1fr; gap: 24px; }
 }
 
 @media (max-width: 640px) {
