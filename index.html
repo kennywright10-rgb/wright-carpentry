@@ -450,7 +450,20 @@
 
 
 <!-- WRIGHT-REVIEWS-START -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKs9oFCOnBK44nJGq-kwFfHqyGT5FRKOg&libraries=places&callback=initReviews"></script>
-<!-- WRIGHT-REVIEWS-END -->
+  function initReviews(){
+    var el=document.createElement("div");
+    el.style.display="none";
+    document.body.appendChild(el);
+    var m=new google.maps.Map(el,{center:{lat:38.7359,lng:-120.8032},zoom:10});
+    var svc=new google.maps.places.PlacesService(m);
+    svc.findPlaceFromQuery({query:"Wright Carpentry",fields:["place_id"]},function(r,st){
+      if(st!==google.maps.places.PlacesServiceStatus.OK||!r||!r[0])return;
+      svc.getDetails({placeId:r[0].place_id,fields:["reviews"]},function(p,ds){
+        if(ds===google.maps.places.PlacesServiceStatus.OK&&p.reviews&&p.reviews.length)
+          renderReviews(p.reviews);
+      });
+    });
+  }
+  <!-- WRIGHT-REVIEWS-END -->
 </body>
 </html>
