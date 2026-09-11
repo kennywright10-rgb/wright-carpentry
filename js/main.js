@@ -3,10 +3,11 @@
    ============================================================ */
 
 // Navbar scroll behavior
-const navbar = document.getElementById('navbar');
+const navbar = document.querySelector('.navbar');
 const heroHeight = window.innerHeight * 0.6;
 
 window.addEventListener('scroll', () => {
+  if (!navbar) return;
   if (window.scrollY > 60) {
     navbar.classList.add('scrolled');
   } else {
@@ -15,8 +16,8 @@ window.addEventListener('scroll', () => {
 });
 
 // Mobile nav toggle
-const hamburger = document.getElementById('hamburger');
-const mobileNav = document.getElementById('mobileNav');
+const hamburger = document.querySelector('.hamburger');
+const mobileNav = document.querySelector('.mobile-nav');
 
 if (hamburger && mobileNav) {
   hamburger.addEventListener('click', () => {
