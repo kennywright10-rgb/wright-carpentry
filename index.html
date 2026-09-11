@@ -418,17 +418,29 @@
     var el = document.createElement('div');
     el.style.display='none';
     document.body.appendChild(el);
-    var map = new google.maps.Map(el,{center:{lat:38.777,lng:-121.863},zoom:10});
+    var map = new google.maps.Map(el,{center:{lat:38.7359,lng:-120.8032},zoom:10});
     var svc = new google.maps.places.PlacesService(map);
-    console.log('[Reviews]     svc.findPlaceFromQuery({query:'Wright Carpentry',fields:['place_id','name']}, function(res,st){
-      if(st!==google.maps.places.PlacesServiceStatus.OK||!res[0]) return;
-      svc.getDetails({placeId:res[0].place_id,fields:['reviews']},function(place,ds){
+    var FALLBACK_PID = 'ChIJB_bzeuMx3YARWMCeOwbfp9k';
+    function fetchByPid(pid){
+      console.log('[Reviews] getDetails for:', pid);
+      svc.getDetails({placeId:pid,fields:['reviews','name']},function(place,ds){
+        console.log('[Reviews] getDetails status:', ds, 'reviews:', place&&place.reviews&&place.reviews.length, 'name:', place&&place.name);
         if(ds===google.maps.places.PlacesServiceStatus.OK&&place.reviews&&place.reviews.length){
           renderReviews(place.reviews);
         }
       });
+    }
+    console.log('[Reviews] Trying findPlaceFromQuery...');
+    svc.findPlaceFromQuery({query:'Wright Carpentry',fields:['place_id','name']},function(res,st){
+      console.log('[Reviews] findPlaceFromQuery status:', st, 'result:', res&&res[0]&&res[0].name, res&&res[0]&&res[0].place_id);
+      if(st===google.maps.places.PlacesServiceStatus.OK&&res&&res[0]){
+        fetchByPid(res[0].place_id);
+      } else {
+        console.log('[Reviews] Falling back to hardcoded PID');
+        fetchByPid(FALLBACK_PID);
+      }
     });
-  window.initReviews = initReviews;
+    window.initReviews = initReviews;
 })();
 </script>
 
