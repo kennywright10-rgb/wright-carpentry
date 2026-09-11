@@ -420,12 +420,16 @@
     document.body.appendChild(el);
     var map = new google.maps.Map(el,{center:{lat:38.777,lng:-121.863},zoom:10});
     var svc = new google.maps.places.PlacesService(map);
+    console.log('[Reviews] Starting textSearch...');
     svc.textSearch({query:'Wright Carpentry Pollock Pines CA 95726'}, function(res,st){
+      console.log('[Reviews] textSearch status:', st, 'results:', res && res.length);
       if(st!==google.maps.places.PlacesServiceStatus.OK||!res[0]) return;
+      console.log('[Reviews] Found place_id:', res[0].place_id);
       svc.getDetails({
         placeId: res[0].place_id,
         fields: ['reviews']
       }, function(place,ds){
+        console.log('[Reviews] getDetails status:', ds, 'reviews:', place && place.reviews && place.reviews.length);
         if(ds===google.maps.places.PlacesServiceStatus.OK && place.reviews){
           renderReviews(place.reviews);
         }
