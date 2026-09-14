@@ -403,7 +403,7 @@
       var stars = '★'.repeat(r.rating)+'☆'.repeat(5-r.rating);
       var ini = r.author_name.split(' ').map(function(n){return n[0]||'';}).join('').slice(0,2).toUpperCase();
       var delay = i ? ' data-aos-delay="'+(i*100)+'"' : '';
-      return '<article class="testimonial-card" data-aos'+delay+'>'
+      return '<article class="testimonial-card" >'
         +'<div class="stars" aria-label="'+r.rating+' out of 5 stars">'+stars+'</div>'
         +'<p class="testimonial-text">“'+esc(r.text)+'”</p>'
         +'<div class="reviewer">'
