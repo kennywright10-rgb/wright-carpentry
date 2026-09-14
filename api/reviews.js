@@ -1,9 +1,8 @@
 export default async function handler(req, res) {
   const apiKey = process.env.REVIEWS_API_KEY;
   if (!apiKey) return res.status(500).json({ error: 'API key not configured' });
-  const cid = '3053071123531868928';
   const url = 'https://maps.googleapis.com/maps/api/place/details/json'
-    + '?cid=' + cid + '&fields=reviews,name,rating&key=' + apiKey;
+    + '?place_id=cid:3053071123531868928&fields=reviews,name,rating&key=' + apiKey;
   try {
     const r = await fetch(url);
     const data = await r.json();
